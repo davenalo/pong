@@ -1,4 +1,4 @@
-import pygame
+import pygame, random
 
 pygame.init()
 
@@ -12,11 +12,32 @@ pygame.display.set_caption("Pong")
 WHITE = (255, 255, 255) # RGB
 BLACK = (0, 0, 0,)
 
+r = random.randint(0, 255)
+
+g = random.randint(0, 255)
+
+b = random.randint(0, 255)
+
+COLORFUL = (r, g, b)
+
 PADDLE_WIDTH, PADDLE_HEIGHT = 20, 100
+
+class Ball:
+
+    COLOR = WHITE
+    MAX_VEL = 5
+
+    def __init__(self, x, y, radius):
+        self.x = x
+        self.y = y
+        self.radius = radius
+        self.x_vel = MAX_VEL
+        self.y_vel = 0
+
 
 class Paddle:
     '''las paletas se repiten, y sus movimientos también'''
-    COLOR = WHITE
+    COLOR = COLORFUL
     VEL = 4
     def __init__(self, x, y, width, height):
         self.x = x
@@ -58,6 +79,7 @@ def main():
 
     left_paddle = Paddle(10, HEIGHT//2 - PADDLE_HEIGHT//2, PADDLE_WIDTH, PADDLE_HEIGHT)
     right_paddle = Paddle(WIDTH - 10 - PADDLE_WIDTH, HEIGHT//2 - PADDLE_HEIGHT//2, PADDLE_WIDTH, PADDLE_HEIGHT)
+
     line = Paddle(348, 0, WIDTH - 698, 500)
     '''utilizo Paddle para hacer una línea en el centro del campo, un poco cutre pero bueno'''
 
